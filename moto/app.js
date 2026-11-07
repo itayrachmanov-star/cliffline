@@ -102,6 +102,8 @@
     cockpit = CL.Cockpit.build(mirrorRT.texture, liveryColor());
     resize();
     window.addEventListener('resize', resize);
+    // iPhones can report the old screen size at the moment of rotation, so measure again once it settles.
+    window.addEventListener('orientationchange', () => { setTimeout(resize, 120); setTimeout(resize, 500); });
   }
   const liveryColor = () => (C.LIVERIES.find((l) => l.id === career.settings.livery) || C.LIVERIES[0]).color;
 
